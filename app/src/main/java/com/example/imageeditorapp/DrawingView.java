@@ -3,6 +3,7 @@ package com.example.imageeditorapp;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
@@ -13,13 +14,15 @@ import android.view.View;
 
 /**
  * Created by Callum on 11/04/2018.
+ *
+ * This class allows the player to draw on the image canvas.
  */
 
 public class DrawingView extends View {
 
     private Path drawPath;
     private Paint drawPaint, canvasPaint;
-    private int paintColor = 0xFF660000;
+    private int paintColor = getResources().getColor(R.color.Black);
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
     private PointF[] points;
@@ -82,5 +85,12 @@ public class DrawingView extends View {
         }
         invalidate();
         return true;
+    }
+
+    public void setColor(String newColor){
+        System.out.println("Called");
+        invalidate();
+        paintColor = Color.parseColor(newColor);
+        drawPaint.setColor(paintColor);
     }
 }
