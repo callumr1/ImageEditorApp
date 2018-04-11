@@ -27,7 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
             ImageButton imgView = (ImageButton) view;
             String color = view.getTag().toString();
             System.out.println(color);
-            main.setColor(color);
+            //main.setColor(color);
             imgView.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
             currentPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
             currentPaint = (ImageButton) view;

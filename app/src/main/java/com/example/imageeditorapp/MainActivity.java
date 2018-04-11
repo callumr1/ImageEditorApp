@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button selectButton;
     private ImageView imageView;
     private DrawingView drawingView;
+    private ImageButton currentPaint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         selectButton = findViewById(R.id.selectButton);
         imageView = findViewById(R.id.imageView);
         drawingView = findViewById(R.id.drawingView);
+
+        LinearLayout paintLayout = findViewById(R.id.paint_colors);
+        currentPaint = (ImageButton) paintLayout.getChildAt(0);
+        currentPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 
         selectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,8 +86,17 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-    public void setColor(String color){
-        drawingView.setColor(color);
+    public void paintClicked(View view){
+        if(view != currentPaint){
+            // changes the color to the one the player just clicked
+            ImageButton imgView = (ImageButton) view;
+            String color = view.getTag().toString();
+            System.out.println(color);
+            drawingView.setColor(color);
+            imgView.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
+            currentPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint));
+            currentPaint = (ImageButton) view;
+        }
     }
+
 }
