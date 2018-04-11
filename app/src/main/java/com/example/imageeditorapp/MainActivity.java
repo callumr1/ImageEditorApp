@@ -1,11 +1,15 @@
 package com.example.imageeditorapp;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -54,5 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbuttons, menu);
+        return true;
     }
 }
