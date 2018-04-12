@@ -11,23 +11,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center"
         android:contentDescription="@string/sml"
-        android:src="@drawable/smallBrushSelector" />
+        android:src="@drawable/small_brush_selector" />
 
     <ImageButton
         android:id="@+id/medium_brush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center"
         android:contentDescription="@string/med"
-        android:src="@drawable/mediumBrushSelector" />
+        android:src="@drawable/medium_brush_selector" />
 
     <ImageButton
         android:id="@+id/large_brush"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_gravity="center"
         android:contentDescription="@string/lrg"
-        android:src="@drawable/largeBrushSelector" />
+        android:src="@drawable/large_brush_selector" />
 
 </LinearLayout>

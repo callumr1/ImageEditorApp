@@ -28,6 +28,7 @@ public class DrawingView extends View {
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
     private Float brushSize, lastBrushSize;
+    private boolean erase = false;
 
     public DrawingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -35,6 +36,10 @@ public class DrawingView extends View {
     }
 
     private void setupDrawing() {
+        // initiates the brush size
+        brushSize = Float.valueOf(getResources().getInteger(R.integer.medium_size));
+        lastBrushSize = brushSize;
+
         //creates the drawing area which the user will interact with
         drawPath = new Path();
         drawPaint = new Paint();
@@ -42,7 +47,7 @@ public class DrawingView extends View {
         // initialise the path properties
         drawPaint.setColor(paintColor);
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(20);
+        drawPaint.setStrokeWidth(brushSize);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -94,5 +99,31 @@ public class DrawingView extends View {
         invalidate();
         paintColor = Color.parseColor(newColor);
         drawPaint.setColor(paintColor);
+    }
+
+    public void setBrushSize(float newSize){
+        float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, newSize, getResources().getDisplayMetrics());
+        brushSize = pixelAmount;
+        drawPaint.setStrokeWidth(brushSize);
+    }
+
+    public void setLastBrushSize(float lastSize){
+        lastBrushSize = lastSize;
+    }
+
+    public float getLastBrushSize(){
+        return lastBrushSize;
+    }
+
+    public void setErase(boolean isErase){
+        // sets erase to either true or false
+        erase = isErase;
+
+        if (erase){
+            drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        }
+        else{
+            drawPaint.setXfermode(null);
+        }
     }
 }
