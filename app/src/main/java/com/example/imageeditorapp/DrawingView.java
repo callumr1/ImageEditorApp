@@ -6,11 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.util.TypedValue;
 
 /**
  * Created by Callum on 11/04/2018.
@@ -25,7 +27,7 @@ public class DrawingView extends View {
     private int paintColor = getResources().getColor(R.color.Black);
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
-    private PointF[] points;
+    private Float brushSize, lastBrushSize;
 
     public DrawingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
